@@ -1,0 +1,11 @@
+/* frontend/src/index.css */
+/**
+ * @file frontend/src/index.css
+ * Tailwind base import, plus your custom styles.
+ */
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /* OPTIONAL: Additional styles or overrides */
+ 
