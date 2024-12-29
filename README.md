@@ -1,15 +1,8 @@
-```
-Why would you add db credentials etc in the README.md, please anonymize everything in the README, including domain names and everything else.
-```
-
-**Response:**
-
-Below is a version of the **README.md** with **all sensitive information anonymized** (database name, user credentials, domain/subdomain references, etc.) replaced by placeholders. This ensures no sensitive data or real domain names are revealed.
-
----
-
-```md
 # Over-Featured Pastebin
+
+This pastebin was created with a single response from AI, it looks fine, and does exactly what I want. AI can create full-stack apps, and getting better as time goes by. What is the takeway?
+I would not be creating my own tools like this if it was not for AI, it would just be a waste of time, so for creating tools to assist with bigger projects is a good use for AI at the moment
+
 
 **Repo URL:** [https://github.com/USERNAME/REPO-NAME.git](https://github.com/USERNAME/REPO-NAME.git)
 
@@ -29,21 +22,23 @@ It includes:
 ---
 
 ## Table of Contents
-1. [Project Structure](#project-structure)  
-2. [Prerequisites](#prerequisites)  
-3. [Database Setup](#database-setup)  
-4. [Backend Setup](#backend-setup)  
-5. [Frontend Setup](#frontend-setup)  
-6. [Reverse Proxy Configuration](#reverse-proxy-configuration)  
-7. [Usage](#usage)  
-8. [Troubleshooting](#troubleshooting)  
-9. [License](#license)  
+- [Over-Featured Pastebin](#over-featured-pastebin)
+  - [Table of Contents](#table-of-contents)
+  - [Project Structure](#project-structure)
+  - [Prerequisites](#prerequisites)
+  - [Database Setup](#database-setup)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+  - [Reverse Proxy Configuration](#reverse-proxy-configuration)
+  - [Usage](#usage)
+  - [Troubleshooting](#troubleshooting)
+  - [License](#license)
 
 ---
 
 ## Project Structure
 
-```
+```sh
 your-app/
 ├── backend/
 │   ├── package.json
@@ -118,54 +113,54 @@ Update these in your backend code if needed.
 ## Backend Setup
 
 1. **Navigate** to the `backend` folder:
-   ```bash
-   cd backend
-   ```
+```bash
+cd backend
+```
 2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 3. **Update MySQL config** (in `src/db/Database.js`), replacing placeholders with your actual credentials:
-   ```js
-   export const db = await mysql.createPool({
-     host: "localhost",
-     user: "your_user",
-     password: "your_password",
-     database: "your_db_name",
-     port: 3306,
-     // ...
-   });
-   ```
+```js
+export const db = await mysql.createPool({
+    host: "localhost",
+    user: "your_user",
+    password: "your_password",
+    database: "your_db_name",
+    port: 3306,
+    // ...
+});
+```
 4. **Run the backend**:
-   ```bash
-   npm run start
-   ```
-   By default, the server listens on port **4000**.  
+```bash
+npm run start
+```
+By default, the server listens on port **4000**.  
 
 ---
 
 ## Frontend Setup
 
 1. **Navigate** to the `frontend` folder:
-   ```bash
-   cd frontend
-   ```
+```bash
+cd frontend
+```
 2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 3. **Check** `App.jsx` or whichever file is calling the backend:
-   ```jsx
-   const res = await axios.post("https://api.example.com/api/pastes", { content });
-   ```
-   Make sure it points to your actual **backend** domain or IP if you’re using a reverse proxy.
+```jsx
+const res = await axios.post("https://api.example.com/api/pastes", { content });
+```
+Make sure it points to your actual **backend** domain or IP if you’re using a reverse proxy.
 4. **Run the dev server**:
-   ```bash
-   npm run dev -- --host 0.0.0.0
-   ```
-   By default, Vite listens on port **5173**.  
-   - Without a reverse proxy, visit `http://<your-server-ip>:5173`.  
-   - With a reverse proxy, visit `https://paste.example.com`.
+```bash
+npm run dev -- --host 0.0.0.0
+```
+By default, Vite listens on port **5173**.  
+- Without a reverse proxy, visit `http://<your-server-ip>:5173`.  
+- With a reverse proxy, visit `https://paste.example.com`.
 
 ---
 
@@ -174,39 +169,39 @@ Update these in your backend code if needed.
 > **Example** using **Nginx**. Replace `paste.example.com` and `api.example.com` with your actual hostnames.
 
 1. **Frontend** subdomain: `paste.example.com`
-   ```nginx
-   server {
-     listen 443 ssl;
-     server_name paste.example.com;
+```nginx
+server {
+    listen 443 ssl;
+    server_name paste.example.com;
 
-     # SSL config, certificate info, etc.
+    # SSL config, certificate info, etc.
 
-     location / {
-       proxy_pass http://127.0.0.1:5173;
-       proxy_http_version 1.1;
-       proxy_set_header Upgrade $http_upgrade;
-       proxy_set_header Connection "upgrade";
-       proxy_set_header Host $host;
-     }
-   }
-   ```
+    location / {
+    proxy_pass http://127.0.0.1:5173;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    }
+}
+```
 2. **Backend** subdomain: `api.example.com`
-   ```nginx
-   server {
-     listen 443 ssl;
-     server_name api.example.com;
+```nginx
+server {
+    listen 443 ssl;
+    server_name api.example.com;
 
-     # SSL config, certificate info, etc.
+    # SSL config, certificate info, etc.
 
-     location / {
-       proxy_pass http://127.0.0.1:4000;
-       proxy_http_version 1.1;
-       proxy_set_header Upgrade $http_upgrade;
-       proxy_set_header Connection "upgrade";
-       proxy_set_header Host $host;
-     }
-   }
-   ```
+    location / {
+    proxy_pass http://127.0.0.1:4000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    }
+}
+```
 
 ---
 
@@ -232,21 +227,21 @@ Update these in your backend code if needed.
    - Confirm that CORS in the backend is configured to allow the frontend origin.
 
 2. **CORS Errors**:
-   - In the backend’s `server.js`, ensure:
-     ```js
-     app.use(cors({
-       origin: "https://paste.example.com",
-       methods: ["GET", "POST"],
-       credentials: true,
-     }));
-     ```
-     (Match your frontend domain exactly.)
+- In the backend’s `server.js`, ensure:
+  ```js
+  app.use(cors({
+    origin: "https://paste.example.com",
+    methods: ["GET", "POST"],
+    credentials: true,
+  }));
+  ```
+  (Match your frontend domain exactly.)
 
-3. **Database Connection Issues**:
+1. **Database Connection Issues**:
    - Verify MySQL credentials in `Database.js`.
    - Confirm the MySQL server is running on `localhost:3306` (or your designated host/port).
 
-4. **SSL Certificate Problems**:
+2. **SSL Certificate Problems**:
    - If using self-signed certs, your browser may block requests. Use a trusted cert or switch to HTTP for local testing.
 
 ---
